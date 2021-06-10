@@ -1,0 +1,15 @@
+@import "../vendor/bootstrap/scss/bootstrap.scss";
+
+@import "global";
+@import "fonts";
+@import "navbar";
+
+@import "pages/success";
+@import "pages/auth";
+@import "pages/dashboard";
+
+@import "components/card";
+@import "components/card_list";
+@import "components/card_dashboard";
+
+@import "transitions/slide-fade";
