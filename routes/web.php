@@ -57,6 +57,7 @@ Route::prefix('admin')
         Route::get('/trash/pembayaran', 'ArsipController@trashPembayaran')->name('admin-trash-pembayaran');
         Route::get('/trash/item', 'ArsipController@trashItem')->name('admin-trash-item');
 
+        // Route::resource('category', 'CategoryController');
         Route::get('/category/restore/{id}', 'CategoryController@restore')->name('category.restore');
         Route::delete('/category/kill/{id}', 'CategoryController@kill')->name('category.kill');
 
