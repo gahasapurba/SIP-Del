@@ -33,7 +33,9 @@
                                             <th class="text-center">Nama Perusahaan</th>
                                             <th class="text-center">Kategori</th>
                                             <th class="text-center">Author</th>
+                                            @if(Auth::user()->roles == 'Staff')
                                             <th>Aksi</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -51,6 +53,7 @@
 
 @push('addon-script')
 
+    @if(Auth::user()->roles == 'Staff')
     <script>
         var datatable = $('#pembayaranTable').DataTable({
             lengthMenu: [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"]],
@@ -126,6 +129,75 @@
             ],
         })
     </script>
+    @elseif(Auth::user()->roles == 'User')
+    <script>
+        var datatable = $('#pembayaranTable').DataTable({
+            lengthMenu: [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"]],
+            processing: true,
+            serverSide: true,
+            ordering: true,
+            ajax: {
+                url: '{{ route('manajemenpembayaran.index') }}',
+            },
+            columns: [
+                {
+                    data: 'id',
+                    name: 'id',
+                    visible: false,
+                    orderable: false,
+                    searchable: false,
+                    width: '5%',
+                    class: 'text-center',
+                },
+                {
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false,
+                    width: '5%',
+                    class: 'text-center',
+                },
+                { data: 'title', name: 'title' },
+                { data: 'company_name', name: 'company_name' },
+                { data: 'category', name: 'category.name' },
+                { data: 'author', name: 'author.name' },
+            ],
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6]
+                    }
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6]
+                    }
+                },
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6]
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6]
+                    }
+                },
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6]
+                    }
+                },
+            ],
+        })
+    </script>
+    @endif
 
     <script type="text/javascript">
         $("body").on("click",".remove-purchasing",function(){
