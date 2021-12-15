@@ -29,16 +29,18 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/search/pesan', 'PesanController@search')->name('pesan.search');
 
     Route::resource('account', 'AccountController');
+    
+    Route::resource('manajemenpembayaran', 'ManajemenPembayaranController');
+    Route::post('/pembayaran/item/add', 'PembayaranController@addItem')->name('pembayaran.additem');
 });
 
 Route::group(['middleware' => ['auth','staff']], function(){
-    Route::resource('manajemenpembayaran', 'ManajemenPembayaranController');
     Route::post('/pembayaran/update/{id}', 'PembayaranController@updatePembayaran')->name('pembayaran.updatepembayaran');
     Route::get('/invoice/pembayaran/{id}', 'PembayaranController@invoice')->name('pembayaran.invoice');
-    Route::post('/pembayaran/item/add', 'PembayaranController@addItem')->name('pembayaran.additem');
     Route::get('/pembayaran/item/edit/{id}', 'PembayaranController@editItem')->name('pembayaran.edititem');
     Route::post('/pembayaran/item/update/{id}', 'PembayaranController@updateItem')->name('pembayaran.updateitem');
     Route::get('/pembayaran/item/delete/{id}', 'PembayaranController@deleteItem')->name('pembayaran.deleteitem');
+    Route::resource('category', 'CategoryController');
 });
 
 Route::prefix('admin')
@@ -55,7 +57,6 @@ Route::prefix('admin')
         Route::get('/trash/pembayaran', 'ArsipController@trashPembayaran')->name('admin-trash-pembayaran');
         Route::get('/trash/item', 'ArsipController@trashItem')->name('admin-trash-item');
 
-        Route::resource('category', 'CategoryController');
         Route::get('/category/restore/{id}', 'CategoryController@restore')->name('category.restore');
         Route::delete('/category/kill/{id}', 'CategoryController@kill')->name('category.kill');
 
