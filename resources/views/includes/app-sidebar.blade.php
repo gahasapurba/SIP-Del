@@ -10,11 +10,11 @@
         >Pengumuman</a
     >
     @if(Auth::user()->roles == 'Staff')
-        <a
-            href="{{ route('category.index') }}"
-            class="list-group-item list-group-item-action {{ (request()->is('category*')) ? 'active' : '' }}"
-            >Manajemen Kategori</a
-        >
+    <a
+        href="{{ route('category.index') }}"
+        class="list-group-item list-group-item-action {{ (request()->is('category*')) ? 'active' : '' }}"
+        >Manajemen Kategori</a
+    >
     @endif
     @if((Auth::user()->roles == 'Staff' || Auth::user()->roles == 'User'))
         <a
