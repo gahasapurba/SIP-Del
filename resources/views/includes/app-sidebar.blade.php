@@ -9,7 +9,14 @@
         class="list-group-item list-group-item-action {{ (request()->is('pengumuman*')) || (request()->is('search/pengumuman*')) ? 'active' : '' }}"
         >Pengumuman</a
     >
-    @if((Auth::user()->roles == 'Staff' && Auth::user()->staff_status == 1))
+    @if(Auth::user()->roles == 'Staff')
+        <a
+            href="{{ route('category.index') }}"
+            class="list-group-item list-group-item-action {{ (request()->is('category*')) ? 'active' : '' }}"
+            >Manajemen Kategori</a
+        >
+    @endif
+    @if((Auth::user()->roles == 'Staff' || Auth::user()->roles == 'User'))
         <a
             href="{{ route('manajemenpembayaran.index') }}"
             class="list-group-item list-group-item-action {{ (request()->is('manajemenpembayaran*')) ? 'active' : '' }}"
