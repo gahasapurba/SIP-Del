@@ -370,7 +370,7 @@
                                 </div>
                             </div>
                             @if($item->purchasing_status == 'belum')
-                                @if((Auth::user()->roles == 'Staff' && Auth::user()->staff_status == 1))
+                                @if((Auth::user()->roles == 'Staff' && Auth::user()->staff_status == 1 || Auth::user()->roles == 'User'))
                                 <div class="row">
                                     <div class="col-12 mt-4">
                                         <h5>
