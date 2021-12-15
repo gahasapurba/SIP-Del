@@ -4,11 +4,11 @@
         class="list-group-item list-group-item-action {{ (request()->is('admin')) ? 'active' : '' }}"
         >Dashboard</a
     >
-    <a
+    {{--<a
         href="{{ route('category.index') }}"
         class="list-group-item list-group-item-action {{ (request()->is('admin/category*')) ? 'active' : '' }}"
         >Manajemen Kategori</a
-    >
+    >--}}
     <a
         href="{{ route('announcement.index') }}"
         class="list-group-item list-group-item-action {{ (request()->is('admin/announcement*')) ? 'active' : '' }}"
